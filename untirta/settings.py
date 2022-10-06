@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'ft',
     'pascasarjana',
     'univ',
+    'dosen',
+    'mahasiswa',
+    'tendik',
 ]
 
 MIDDLEWARE = [
@@ -85,8 +88,12 @@ WSGI_APPLICATION = 'untirta.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projektik_untirta',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'TORT': '3306',
     }
 }
 

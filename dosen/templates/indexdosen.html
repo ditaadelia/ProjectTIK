@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+    <center>
+        <h1>DAFTAR DOSEN PENDIDIKAN MATEMATIKA UNTIRTA</h1>
+    </center>
+
+    <center>
+
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+            padding: 10px;
+            }
+            th {
+            background-color: #4CAF50;
+            color: white;
+            }
+        </style>
+ 
+    <body>
+        <table>
+            <tr>
+                <th>NIDN</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Email</th>
+                <th>Foto</th>
+            </tr>
+    
+        {% for dosen in lecturer %}
+        
+            <tr>
+                <td>{{dosen.nidn}}</td>
+                <td>{{dosen.nip}}</td>
+                <td>{{dosen.nama}}</td>
+                <td>{{dosen.jabatan}}</td>
+                <td>{{dosen.email}}</td>
+                <td><img src="{{ dosen.foto }}" alt="Foto" width="100px"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+
+    </center>
+    
+
+{% endblock %}

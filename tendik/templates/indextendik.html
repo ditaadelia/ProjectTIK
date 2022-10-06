@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+    <center>
+        <h1>DAFTAR TENAGA PENDIDIK</h1>
+        <h2>FKIP</h2>
+    </center>
+    <center>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+            padding: 10px;
+            }
+            th {
+            background-color: #6495ED;
+            color: white;
+            }
+        </style>
+ 
+    <body>
+    <table>
+        <tr>
+            <th>NIP</th>
+            <th>Nama</th>
+            <th>Jabatan</th>
+        </tr>
+    </center>
+
+    {% for tendik in educator %}
+    
+        <tr>
+            <td>{{tendik.nip}}</td>
+            <td>{{tendik.nama}}</td>
+            <td>{{tendik.jabatan}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+   
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+    <center>
+        <h1>DAFTAR MAHASISWA PENDIDIKAN MATEMATIKA</h1>
+        <h2>KELAS 3A</h2>
+    </center>
+    <center>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+            padding: 10px;
+            }
+            th {
+            background-color: #6495ED;
+            color: white;
+            }
+        </style>
+ 
+    <body>
+    <table>
+        <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Tempat Tanggal Lahir</th>
+            <th>Email</th>
+            <th>Fakultas</th>
+            <th>Prodi</th>
+            <th>Foto</th>
+        </tr>
+    </center>
+
+    {% for mahasiswa in student %}
+    
+        <tr>
+            <td>{{mahasiswa.nim}}</td>
+            <td>{{mahasiswa.nama}}</td>
+            <td>{{mahasiswa.ttl}}</td>
+            <td>{{mahasiswa.email}}</td>
+            <td>{{mahasiswa.fakultas}}</td>
+            <td>{{mahasiswa.prodi}}</td>
+            <td><img src="{{ mahasiswa.foto }}" alt="Foto" width="100px"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+   
+
+
+{% endblock %}
