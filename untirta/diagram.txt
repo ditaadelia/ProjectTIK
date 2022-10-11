@@ -1,0 +1,95 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+// You can define the tables with full schema names
+Table mahasiswa {
+  id int [pk, increment] // auto-incrementt
+  nim varchar
+  nama varchar
+  ttl varchar
+  email varchar
+  kode_fakultas varchar
+  kode_prodi varchar
+  alamat varchar
+  foto imagefield
+}
+
+// If schema name is omitted, it will default to "public" schema.
+Table fakultas {
+  kode_fakultas int [pk]
+  nama_fakultas varchar
+}
+
+Table prodi {
+  kode_prodi int [pk]
+  nama_prodi varchar
+ }
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one; <> many-to-many
+Ref: mahasiswa.kode_fakultas > fakultas.kode_fakultas  
+Ref: mahasiswa.kode_prodi > prodi.kode_prodi
+
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+Table dosen {
+  id int [pk, increment] // auto-incrementt
+  nip varchar
+  nama varchar
+  kode_jabatan varchar
+  email varchar
+  foto imagefield
+}
+
+Table jabatandosen {
+  kode_jabatan int [pk]
+  nama_jabatan varchar
+}
+
+Ref: dosen.kode_jabatan > jabatandosen.kode_jabatan
+
+//----------------------------------------------//
+
+//// -- Level 3 
+// Indexes: You can define a single or multi-column index 
+Table tendik {
+  id int [pk]
+  nip varchar
+  nama varchar
+  kode_jabatan varchar
+}
+
+Table jabatantendik {
+  kode_jabatan [pk]
+  nam_jabatan varchar
+}
+
+Ref: tendik.kode_jabatan > jabatantendik.kode_jabatan
+
+
+Table kurikulum {
+  id int [pk]
+  kode_matakuliah int
+  nama_matakuliah varchar
+  kode_status varchar
+}
+
+Table matakuliah {
+  kode_matakuliah [pk]
+  nama_matakuliah varchar
+}
+
+Table status {
+  kode_status [pk]
+  status varchar
+}
+
+
+Ref: kurikulum.kode_matakuliah > matakuliah.kode_matakuliah
+Ref: kurikulum.nama_matakuliah > matakuliah.nama_matakuliah
+Ref: kurikulum.kode_status > status.kode_status
