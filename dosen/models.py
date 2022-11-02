@@ -12,4 +12,4 @@ class Dosen(models.Model):
 
 
     def _str_(self):
-        return "{}".format(self.nama)
+        return self.nama

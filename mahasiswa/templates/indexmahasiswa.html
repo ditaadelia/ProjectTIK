@@ -23,6 +23,18 @@
             }
         </style>
  
+ <br>
+ <h3>
+    Data Mahasiswa
+    <a href="http://127.0.0.1:8000/tambah-mahasiswa/" target="_blank">Tambah</a>
+ </h3>
+
+ {% for message in messages %}
+ {% if message %}
+     <div class="alert alert-success">{{ message }}</div>
+ {% endif %}
+{% endfor %}
+
     <body>
     <table>
         <tr>
@@ -33,19 +45,42 @@
             <th>Fakultas</th>
             <th>Prodi</th>
             <th>Foto</th>
+            <th>Action</th>
         </tr>
     </center>
 
     {% for mahasiswa in student %}
     
         <tr>
-            <td>{{mahasiswa.nim}}</td>
-            <td>{{mahasiswa.nama}}</td>
-            <td>{{mahasiswa.ttl}}</td>
-            <td>{{mahasiswa.email}}</td>
-            <td>{{mahasiswa.fakultas}}</td>
-            <td>{{mahasiswa.prodi}}</td>
+            <td>{{ mahasiswa.nim }}</td>
+            <td>{{ mahasiswa.nama }}</td>
+            <td>{{ mahasiswa.ttl }}</td>
+            <td>{{ mahasiswa.email }}</td>
+            <td>{{ mahasiswa.fakultas }}</td>
+            <td>{{ mahasiswa.prodi }}</td>
             <td><img src="{{ mahasiswa.foto }}" alt="Foto" width="100px"></td>
+            <td>
+                <button data-toggle="modal" data-target="#hapus-{{ mahasiswa.id }}" class="btn btn-danger">Hapus</button>
+            </td>
+
+            <div class="modal" id="hapus-{{ mahasiswa.id ))">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-tittle">
+                                <h3>Hapus</h3>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda yakin ingin menghapus <strong>{{ mahasiswa.nim | upper }}</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'hapus_mahasiswa' mahasiswa.id %}" class="btn btn-danger">Hapus</a>
+                            <button class="btn btn-dark" data-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         {% endfor %}
     </table>

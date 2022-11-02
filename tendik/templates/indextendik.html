@@ -23,21 +23,57 @@
             }
         </style>
  
+ <br>
+ <h3>
+    Data Tendik
+    <a href="http://127.0.0.1:8000/tambah-tendik/" target="_blank">Tambah</a>
+ </h3>
+
+ {% for message in messages %}
+ {% if message %}
+     <div class="alert alert-success">{{ message }}</div>
+ {% endif %}
+{% endfor %}
+
+
     <body>
     <table>
         <tr>
             <th>NIP</th>
             <th>Nama</th>
             <th>Jabatan</th>
+            <th>Action</th>
         </tr>
     </center>
 
     {% for tendik in educator %}
     
         <tr>
-            <td>{{tendik.nip}}</td>
+            <td><a href="{% url 'ubah_tendik' tendik.id %}">{{ tendik.nip }}</a></td>
             <td>{{tendik.nama}}</td>
             <td>{{tendik.jabatan}}</td>
+            <td>
+                <button data-toggle="modal" data-target="#hapus-{{ tendik.id }}" class="btn btn-danger">Hapus</button>
+            </td>
+
+            <div class="modal" id="hapus-{{ tendik.id ))">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-tittle">
+                                <h3>Hapus</h3>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda yakin ingin menghapus <strong>{{ tendik.nip | upper }}</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'hapus_tendik' tendik.id %}" class="btn btn-danger">Hapus</a>
+                            <button class="btn btn-dark" data-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         {% endfor %}
     </table>

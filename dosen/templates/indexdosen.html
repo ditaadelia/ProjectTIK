@@ -24,6 +24,18 @@
             }
         </style>
  
+ <br>
+ <h3>
+    Data Dosen
+    <a href="http://127.0.0.1:8000/tambah-dosen/" target="_blank">Tambah</a>
+ </h3>
+
+ {% for message in messages %}
+ {% if message %}
+     <div class="alert alert-success">{{ message }}</div>
+ {% endif %}
+{% endfor %}
+
     <body>
         <table>
             <tr>
@@ -33,17 +45,40 @@
                 <th>Jabatan</th>
                 <th>Email</th>
                 <th>Foto</th>
+                <th>Action</th>
             </tr>
     
         {% for dosen in lecturer %}
         
             <tr>
-                <td>{{dosen.nidn}}</td>
-                <td>{{dosen.nip}}</td>
-                <td>{{dosen.nama}}</td>
-                <td>{{dosen.jabatan}}</td>
-                <td>{{dosen.email}}</td>
+                <td><a href="{% url 'ubah_dosen' dosen.id %}">{{ dosen.nidn }}</a></td>
+                <td>{{ dosen.nip }}</td>
+                <td>{{ dosen.nama }}</td>
+                <td>{{ dosen.jabatan }}</td>
+                <td>{{ dosen.email }}</td>
                 <td><img src="{{ dosen.foto }}" alt="Foto" width="100px"></td>
+                <td>
+                    <button data-toggle="modal" data-target="#hapus-{{ dosen.id }}" class="btn btn-danger">Hapus</button>
+                </td>
+
+                <div class="modal" id="hapus-{{ dosen.id ))">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-tittle">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus <strong>{{ dosen.nidn | upper }}</strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_dosen' dosen.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data-dismiss="modal">Tidak</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </tr>
             {% endfor %}
         </table>

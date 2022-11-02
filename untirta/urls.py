@@ -26,9 +26,10 @@ from fkip.views import prodi6
 from ft.views import prodi7
 from pascasarjana.views import prodi8
 from univ.views import univ
-from dosen.views import dosen
-from mahasiswa.views import mahasiswa
-from tendik.views import tendik
+from dosen.views import *
+from mahasiswa.views import *
+from tendik.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,9 +42,18 @@ urlpatterns = [
     path('ft/', prodi7),
     path('pascasarjana/', prodi8),
     path('universitas/', univ),
-    path('dosen/', dosen),
-    path('mahasiswa/', mahasiswa),
-    path('tendik/', tendik),
+    path('dosen/', dosen, name='dosen'),
+    path('mahasiswa/', mahasiswa,),
+    path('tendik/', tendik,),
+    path('tambah-dosen/', tambah_dosen),
+    path('tambah-mahasiswa/', tambah_mahasiswa),
+    path('dosen/dosen/<int:id_dosen>', ubah_dosen, name='ubah_dosen'),
+    path('dosen/hapus/<int:id_dosen>', hapus_dosen, name="hapus_dosen"),
+    path('mahasiswa/mahasiswa/<int:id_mahasiswa', ubah_mahasiswa, name='ubah_mahasiswa'),
+    path('mahasiswa/hapus/<int:id_mahasiswa>', hapus_mahasiswa, name="hapus_mahasiswa"),
+    path('tambah-tendik/', tambah_tendik),
+    path('tendik/tendik/<int:id_tendik>', ubah_tendik, name='ubah_tendik'),
+    path('tendik/hapus/<int:id_tendik>', hapus_tendik, name="hapus_tendik"),
 ]
 
 if settings.DEBUG:
